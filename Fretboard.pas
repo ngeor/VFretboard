@@ -24,28 +24,28 @@ type
   TFretboard = class(TGraphicControl)
   private
     FFilter: TNotesSet;
-    FFretCount: integer;
-    FFirstFret: integer;
+    FFretCount: Integer;
+    FFirstFret: Integer;
     procedure SetFilter(Value: TNotesSet);
-    procedure SetFretCount(Value: integer);
-    procedure SetFirstFret(Value: integer);
+    procedure SetFretCount(Value: Integer);
+    procedure SetFirstFret(Value: Integer);
   protected
     procedure Paint; override;
   public
     constructor Create(AOwner: TComponent); override;
     function FormScale(Key: TNote; tones: array of TTone): TNotesArray; overload;
-    function GetNoteName(Note: TNote): string;
+    function GetNoteName(Note: TNote): String;
     function GetKnownScale(ks: TKnownScale): TTonesArray;
-    class function CreateTonesArray(ta: array of integer): TTonesArray;
+    class function CreateTonesArray(ta: array of Integer): TTonesArray;
   published
     property Anchors;
     property Filter: TNotesSet read FFilter write SetFilter default nsChromatic;
-    property FretCount: integer read FFretCount write SetFretCount default 12;
-    property FirstFret: integer read FFirstFret write SetFirstFret;
+    property FretCount: Integer read FFretCount write SetFretCount default 12;
+    property FirstFret: Integer read FFirstFret write SetFirstFret;
   end;
 
 procedure Register;
-function IntToNote(i: integer): TNote;
+function IntToNote(i: Integer): TNote;
 function FormScaleSet(Key: TNote; tones: TTonesArray): TNotesSet;
 
 
@@ -56,13 +56,13 @@ uses Types;
 const
   T = 2;
   H = 1;
-  noteNames: array [TNote] of string = ('C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F',
+  noteNames: array [TNote] of String = ('C', 'C#/Db', 'D', 'D#/Eb', 'E', 'F',
     'F#/Gb', 'G', 'G#/Ab', 'A', 'A#/Bb', 'B');
 
 var
   ksTones: array [TKnownScale] of TTonesArray;
 
-function IntToNote(i: integer): TNote;
+function IntToNote(i: Integer): TNote;
 begin
   FillChar(Result, 1, i mod 12);
 end;
@@ -76,8 +76,8 @@ procedure TFretboard.Paint;
 const
   chordKey: array [1..6] of TNote = (E, B, G, D, A, E);
 var
-  x, y: integer;
-  fretWidth, fretHeight: integer;
+  x, y: Integer;
+  fretWidth, fretHeight: Integer;
   note: TNote;
   rect: TRect;
   txtRect: TRect;
@@ -114,7 +114,7 @@ end;
 
 function TFretboard.FormScale(Key: TNote; tones: array of TTone): TNotesArray;
 var
-  i: integer;
+  i: Integer;
 begin
   SetLength(Result, Length(tones) + 1);
   Result[0] := Key;
@@ -124,7 +124,7 @@ end;
 
 function FormScaleSet(Key: TNote; tones: TTonesArray): TNotesSet;
 var
-  i: integer;
+  i: Integer;
   note: TNote;
 begin
   Result := [Key];
@@ -136,7 +136,7 @@ begin
   end;
 end;
 
-function TFretboard.GetNoteName(Note: TNote): string;
+function TFretboard.GetNoteName(Note: TNote): String;
 begin
   Result := noteNames[Note];
 end;
@@ -146,9 +146,9 @@ begin
   Result := ksTones[ks];
 end;
 
-class function TFretboard.CreateTonesArray(ta: array of integer): TTonesArray;
+class function TFretboard.CreateTonesArray(ta: array of Integer): TTonesArray;
 var
-  i: integer;
+  i: Integer;
 begin
   SetLength(Result, Length(ta));
   for i := 0 to Length(ta) - 1 do
@@ -161,7 +161,7 @@ begin
   Invalidate;
 end;
 
-procedure TFretboard.SetFretCount(Value: integer);
+procedure TFretboard.SetFretCount(Value: Integer);
 begin
   if Value <> FFretCount then
   begin
@@ -170,7 +170,7 @@ begin
   end;
 end;
 
-procedure TFretboard.SetFirstFret(Value: integer);
+procedure TFretboard.SetFirstFret(Value: Integer);
 begin
   if Value <> FFirstFret then
   begin
