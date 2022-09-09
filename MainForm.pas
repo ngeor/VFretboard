@@ -10,7 +10,7 @@ uses
   StdCtrls, ExtCtrls, Fretboard;
 
 type
-  TDynamicIntArray = array of integer;
+  TDynamicIntArray = array of Integer;
 
   TForm1 = class(TForm)
     cmbNotes: TComboBox;
@@ -25,7 +25,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure cmbNotesChange(Sender: TObject);
   private
-    function GetScale: string;
+    function GetScale: String;
   public
     { Public declarations }
   end;
@@ -55,9 +55,9 @@ end;
 
 
 
-function TForm1.GetScale: string;
+function TForm1.GetScale: String;
 var
-  i: integer;
+  i: Integer;
   notes: TNotesArray;
   key: TNote;
   tones: TTonesArray;
